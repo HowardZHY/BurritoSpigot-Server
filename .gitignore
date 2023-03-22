@@ -37,6 +37,9 @@ manifest.mf
 
 #Build System
 Paperclip
-work/1.8.8
+temp
+work
+BurritoSpigot-Server/work/1.8.8
 build
 BurritoSpigot-Server/src/main/java/net/minecraft
+BurritoSpigot-Server/target
