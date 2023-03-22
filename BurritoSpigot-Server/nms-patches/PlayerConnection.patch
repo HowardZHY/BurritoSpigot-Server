@@ -67,10 +67,10 @@
      private int f;
      private int g;
      private boolean h;
--    private int keepAliveID;
--    private long lastPing;
-+    private int i;
-+    private long j;
+-    private int i;
+-    private long j;
++    public int i;
++    public long j;
      private long k;
 -    private int chatThrottle;
 +    // CraftBukkit start - multithreaded fields
@@ -128,22 +128,13 @@
  
      public void c() {
          this.h = false;
-@@ -54,44 +134,69 @@
-         this.minecraftServer.methodProfiler.a("keepAlive");
-         if ((long) this.e - this.k > 40L) {
-             this.k = (long) this.e;
--            this.lastPing = this.getCurrentMillis();
--            this.keepAliveID = (int) this.lastPing;
--            this.sendPacket(new PacketPlayOutKeepAlive(this.keepAliveID));
-+            this.j = this.d();
-+            this.i = (int) this.j;
-+            this.sendPacket(new PacketPlayOutKeepAlive(this.i));
+@@ -60,15 +140,21 @@
          }
  
          this.minecraftServer.methodProfiler.b();
 +        // CraftBukkit start
 +        for (int spam; (spam = this.chatThrottle) > 0 && !chatSpamField.compareAndSet(this, spam, spam - 1); ) ;
-+        /* Use thread-safe field access instead
++            /* Use thread-safe field access instead
          if (this.chatThrottle > 0) {
              --this.chatThrottle;
          }
@@ -159,16 +150,13 @@
              this.disconnect("You have been idle for too long!");
          }
  
-     }
- 
--    public NetworkManager getNetworkManager() {
-+    public NetworkManager a() {
+@@ -78,20 +164,39 @@
          return this.networkManager;
      }
  
 +    //No called of force closed
      public void disconnect(String s) {
-+        // CraftBukkit start - fire PlayerKickEvent
++        // CraftBukkit start - fire PlayerKickEventString
 +        String leaveMessage = EnumChatFormat.YELLOW + this.player.getName() + " left the game.";
 +
 +        PlayerKickEvent event = new PlayerKickEvent(this.server.getPlayer(this.player), s, leaveMessage);
@@ -197,12 +185,10 @@
 +        this.a(chatcomponenttext); // CraftBukkit - fire quit instantly
          this.networkManager.k();
 -        Futures.getUnchecked(this.minecraftServer.postToMainThread(new Runnable() {
--            public void run() {
--                PlayerConnection.this.networkManager.l();
 +        // CraftBukkit - Don't wait
 +        this.minecraftServer.postToMainThread(new Runnable() {
-+             public void run() {
-+                 PlayerConnection.this.networkManager.l();
+             public void run() {
+                 PlayerConnection.this.networkManager.l();
              }
 -        }));
 +        });
@@ -1022,17 +1008,16 @@
          }
      }
 +    // CraftBukkit end
-+
-+   private void handleCommand(String s) {
+ 
+     private void handleCommand(String s) {
+-        this.minecraftServer.getCommandHandler().a(this.player, s);
 +        SpigotTimings.playerCommandTimer.startTiming(); // Spigot
 +       // CraftBukkit start - whole method
 +        if ( org.spigotmc.SpigotConfig.logCommands ) // Spigot
-+        this.c.info(this.player.getName() + " issued server command: " + s);
++            this.c.info(this.player.getName() + " issued server command: " + s);
 +
 +        CraftPlayer player = this.getPlayer();
- 
--    private void handleCommand(String s) {
--        this.minecraftServer.getCommandHandler().a(this.player, s);
++
 +        PlayerCommandPreprocessEvent event = new PlayerCommandPreprocessEvent(player, s, new LazyPlayerSet());
 +        this.server.getPluginManager().callEvent(event);
 +
@@ -1759,24 +1744,7 @@
  
              tileentitysign.update();
              worldserver.notify(blockposition);
-@@ -850,25 +1929,41 @@
-     }
- 
-     public void a(PacketPlayInKeepAlive packetplayinkeepalive) {
--        if (packetplayinkeepalive.a() == this.keepAliveID) {
--            int i = (int) (this.getCurrentMillis() - this.lastPing);
-+        if (packetplayinkeepalive.a() == this.i) {
-+            int i = (int) (this.d() - this.j);
- 
-             this.player.ping = (this.player.ping * 3 + i) / 4;
-         }
- 
-     }
- 
--    private long getCurrentMillis() {
-+    private long d() {
-         return System.nanoTime() / 1000000L;
-     }
+@@ -864,11 +1943,27 @@
  
      public void a(PacketPlayInAbilities packetplayinabilities) {
          PlayerConnectionUtils.ensureMainThread(packetplayinabilities, this, this.player.u());

@@ -1,6 +1,6 @@
 --- a/net/minecraft/server/PacketPlayInCustomPayload.java
 +++ b/net/minecraft/server/PacketPlayInCustomPayload.java
-@@ -1,44 +1,37 @@
+@@ -1,44 +1,40 @@
  package net.minecraft.server;
  
 -import io.netty.buffer.ByteBuf;
@@ -9,7 +9,7 @@
  import java.io.IOException;
  
  public class PacketPlayInCustomPayload implements Packet<PacketListenerPlayIn> {
--
+ 
 -    private String a;
 -    private PacketDataSerializer b;
 -
@@ -47,10 +47,12 @@
 -        this.a((PacketListenerPlayIn) packetlistener);
 -    }
 -}
-+  private String a;
++  // BurritoSpigot Start
++  public String a;
 +  
-+  private PacketDataSerializer b;
-+  
++  public PacketDataSerializer b;
++  // BurritoSpigot End
++
 +  public void a(PacketDataSerializer paramPacketDataSerializer) throws IOException
 +  {
 +    this.a = paramPacketDataSerializer.c(20);

@@ -196,7 +196,7 @@ public class VersionCommand extends BukkitCommand {
             int distance = getDistance("CobbleSword/BurritoSpigot", parts[0]);
             switch (distance) {
                 case -1:
-                    setVersionMessage("Error obtaining version information");
+                    setVersionMessage("Error obtaining version information, custom build?");
                     break;
                 case 0:
                     setVersionMessage("You are running the latest version");
@@ -317,7 +317,7 @@ public class VersionCommand extends BukkitCommand {
                 reader.close();
             }
             */
-            HttpURLConnection connection = (HttpURLConnection) new URL("https://api.github.com/repos/" + repo + "/compare/" + BRANCH + "..." + hash).openConnection();
+            HttpURLConnection connection = (HttpURLConnection) new URL("http://api.github.com/repos/" + repo + "/compare/" + BRANCH + "..." + hash).openConnection();
             connection.connect();
             if (connection.getResponseCode() == HttpURLConnection.HTTP_NOT_FOUND) return -2; // Unknown commit
             try (

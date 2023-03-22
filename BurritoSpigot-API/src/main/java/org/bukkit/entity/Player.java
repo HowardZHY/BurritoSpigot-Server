@@ -1314,7 +1314,7 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
         }
 
         /**
-         * Gets all players hidden with {@link hidePlayer(org.bukkit.entity.Player)}.
+         * Gets all players hidden with {hidePlayer(org.bukkit.entity.Player)}.
          *
          * @return a Set with all hidden players
          */
