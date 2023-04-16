@@ -6,19 +6,19 @@
      public PacketPlayInChat(String s) {
 -        if (s.length() > 100) {
 -            s = s.substring(0, 100);
-+        // Burrito Start
-+        // TODO: Custom Chat Length
++        // BurritoSpigot Start
++        // BurritoSpigot - TODO: Custom Chat Length Config
 +        if (s.length() > 512) {
 +            s = s.substring(0, 512);
          }
 -
-+        // Burrito End
++        // BurritoSpigot End
          this.a = s;
      }
  
      public void a(PacketDataSerializer packetdataserializer) throws IOException {
 -        this.a = packetdataserializer.c(100);
-+        this.a = packetdataserializer.c(512); // Burrito
++        this.a = packetdataserializer.c(512); // BurritoSpigot
      }
  
      public void b(PacketDataSerializer packetdataserializer) throws IOException {

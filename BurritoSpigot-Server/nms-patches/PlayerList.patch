@@ -311,7 +311,7 @@
 +        while (iterator.hasNext()) {
 +            entityplayer = (EntityPlayer) iterator.next();
 +            savePlayerFile(entityplayer); // CraftBukkit - Force the player's inventory to be saved
-+            entityplayer.playerConnection.disconnect("You logged in from another location");
++            entityplayer.playerConnection.disconnect("You logged in from another location"); // BurritoSpigot - TODO: Able to toggle log in from another location kick
 +        }
 +
 +        // Instead of kicking then returning, we need to store the kick reason

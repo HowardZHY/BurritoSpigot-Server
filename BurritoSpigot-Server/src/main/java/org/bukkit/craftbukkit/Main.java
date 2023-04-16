@@ -150,7 +150,14 @@ public class Main {
                 // TacoSpigot end
 
                 // BurritoSpigot start
-                // TODO: Config
+                // BurritoSpigot - TODO: Configuration file for BurritoSpigot
+                /*
+                acceptsAll(asList("burrito", "burrito-settings"), "File for burritospigot settings")
+                        .withRequiredArg()
+                        .ofType(File.class)
+                        .defaultsTo(new File("burrito.yml"))
+                        .describedAs("Yml file");
+                */
                 // BurritoSpigot end
             }
         };

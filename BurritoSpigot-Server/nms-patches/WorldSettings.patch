@@ -1,16 +1,15 @@
 --- a/net/minecraft/server/WorldSettings.java
 +++ b/net/minecraft/server/WorldSettings.java
-@@ -3,7 +3,8 @@
+@@ -3,7 +3,7 @@
  public final class WorldSettings {
  
      private final long a;
 -    private final WorldSettings.EnumGamemode b;
-+    // BurritoSpigot - make public
-+    public final WorldSettings.EnumGamemode b;
++    public final WorldSettings.EnumGamemode b; // BurritoSpigot - make public
      private final boolean c;
      private final boolean d;
      private final WorldType e;
-@@ -74,13 +75,15 @@
+@@ -74,13 +74,15 @@
  
          NOT_SET(-1, ""), SURVIVAL(0, "survival"), CREATIVE(1, "creative"), ADVENTURE(2, "adventure"), SPECTATOR(3, "spectator");
  

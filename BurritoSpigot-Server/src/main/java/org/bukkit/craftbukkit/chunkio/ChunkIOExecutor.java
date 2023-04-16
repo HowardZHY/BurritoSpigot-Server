@@ -8,7 +8,7 @@ import org.bukkit.craftbukkit.util.AsynchronousExecutor;
 
 public class ChunkIOExecutor {
     static final int BASE_THREADS = 3; // PaperSpigot - Bumped value // BurritoSpigot - TODO: Custom Value
-    static final int PLAYERS_PER_THREAD = 50;
+    static final int PLAYERS_PER_THREAD = 50; // BurritoSpigot - TODO: Custom Value
 
     private static final AsynchronousExecutor<QueuedChunk, Chunk, Runnable, RuntimeException> instance = new AsynchronousExecutor<QueuedChunk, Chunk, Runnable, RuntimeException>(new ChunkIOProvider(), BASE_THREADS);
 
