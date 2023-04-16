@@ -6,6 +6,8 @@ import java.util.UUID;
 import java.util.regex.Pattern;
 import org.bukkit.plugin.Plugin;
 
+// BurritoSpigot : This class is for future plugin compact. API are not implemented.
+@Deprecated
 public final class NamespacedKey {
   public static final String MINECRAFT = "minecraft";
   
@@ -18,8 +20,7 @@ public final class NamespacedKey {
   private final String namespace;
   
   private final String key;
-  
-  @Deprecated
+
   public NamespacedKey(String namespace, String key) {
     Preconditions.checkArgument((namespace != null && VALID_NAMESPACE.matcher(namespace).matches()), "namespace");
     Preconditions.checkArgument((key != null && VALID_KEY.matcher(key).matches()), "key");
