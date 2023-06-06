@@ -41,6 +41,25 @@ Edit the `KnockbackSpigot.json` then restart the server
 }
 ```
 
+## BurritoSpigot Config / 'burrito.yml'
+```
+# This is the main configuration file for BurritoSpigot.
+# As you can see, there's tons to configure. Some options may impact gameplay, so use
+# with caution, and make sure you know what each option does before configuring.
+# 
+# If you need help with the configuration or have any questions related to BurritoSpigot,
+# join us in our Discord.
+# 
+# Discord: https://discord.gg/SBTEbSx
+# Github: https://github.com/CobbleSword/BurritoSpigot
+
+config-version: 1
+chunkThreads: 2
+playersPerThread: 50
+warnTooManyChannelsRegistered: true
+customChatLength: 100
+```
+
 ## Discord / Support
 [Join Discord group](https://discord.gg/SBTEbSx)
 
