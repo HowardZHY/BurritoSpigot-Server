@@ -7,8 +7,7 @@ Supports 300 Players @ 20 TPS (Given all your plugins are programmed well)
 Since it's been a few years since 1.8.9 release, it has fallen behind in a few optimizations to the infrastructure to replies on, these changes just brings it up to speed
 * Java 8+ support this brings all the performance improvements of the more later java versions
 * Updated netty 4.0.23.Final => 4.1.75.Final
-* Stops classic book exploit 
-* Improve max chat length to 512
+* Stops classic book exploit
 * Backport NamespacedKey to improve newer plugin compact
 
 ## Commons Plugins

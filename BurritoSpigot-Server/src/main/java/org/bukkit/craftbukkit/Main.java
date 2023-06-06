@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import dev.cobblesword.burrito.BurritoSpigotConfig;
 import dev.cobblesword.knockback.KnockbackSpigot;
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
@@ -227,6 +228,8 @@ public class Main {
                 new KnockbackSpigot();
                 net.techcable.tacospigot.TacoSpigotConfig.init((File) options.valueOf("taco-settings")); // TacoSpigot - load config before we load libraries to allow access while loading
                 System.out.println("Loading libraries, please wait...");
+                BurritoSpigotConfig.init((File) options.valueOf("burrito-settings")); // BurritoSpigot - load config before we load libraries to allow access while loading
+                System.out.println("Loading BurritoSpigot ...");
                 MinecraftServer.main(options);
             } catch (Throwable t) {
                 t.printStackTrace();
