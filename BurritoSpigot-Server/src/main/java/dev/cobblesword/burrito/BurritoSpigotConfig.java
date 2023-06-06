@@ -38,7 +38,6 @@ public class BurritoSpigotConfig {
             System.out.println("Loading BurritoSpigot config from " + configFile.getName());
             config.load(CONFIG_FILE);
         } catch (IOException ex) {
-            Bukkit.getLogger().log(Level.SEVERE, "Could not load burrito.yml, another program might using it", ex);
         } catch (InvalidConfigurationException ex) {
             Bukkit.getLogger().log(Level.SEVERE, "Could not load burrito.yml, please correct your syntax errors", ex);
             throw Throwables.propagate(ex);
@@ -113,21 +112,21 @@ public class BurritoSpigotConfig {
 
     public static boolean warnTooManyChannelsRegistered;
 
-    public static void warnTooManyChannelsRegistered(){
+    private static void warnTooManyChannelsRegistered(){
         warnTooManyChannelsRegistered = getBoolean("warnTooManyChannelsRegistered", true);
     }
 
     public static int chunkThreads;
     public static int playersPerThread;
 
-    public static void chunk() {
+    private static void chunk() {
         chunkThreads = getInt("chunkThreads", 2);
         playersPerThread = getInt("playersPerThread", 50);
     }
 
     public static int customChatLength;
 
-    public static void customChatLength(){
+    private static void customChatLength(){
         customChatLength = getInt("customChatLength", 100);
     }
 
