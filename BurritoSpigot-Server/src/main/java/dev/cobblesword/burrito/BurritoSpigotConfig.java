@@ -1,42 +1,46 @@
-package net.techcable.tacospigot;
+package dev.cobblesword.burrito;
 
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Level;
 
-import net.minecraft.server.MinecraftServer;
-
 import org.bukkit.Bukkit;
-import org.bukkit.command.Command;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import com.google.common.base.Throwables;
 
-public class TacoSpigotConfig {
+public class BurritoSpigotConfig {
 
     private static File CONFIG_FILE;
-    private static final String HEADER = "This is the main configuration file for TacoSpigot.\n" + "As you can see, there's tons to configure. Some options may impact gameplay, so use\n" + "with caution, and make sure you know what each option does before configuring.\n" + "\n" + "If you need help with the configuration or have any questions related to TacoSpigot,\n" + "join us at the IRC.\n" + "\n" + "IRC: #taco @ irc.spi.gt ( http://irc.spi.gt/iris/?channels=taco )\n";
+    public static final String HEADER = "This is the main configuration file for BurritoSpigot.\n"
+            + "As you can see, there's tons to configure. Some options may impact gameplay, so use\n"
+            + "with caution, and make sure you know what each option does before configuring.\n"
+            + "\n"
+            + "If you need help with the configuration or have any questions related to BurritoSpigot,\n"
+            + "join us in our Discord.\n"
+            + "\n"
+            + "Discord: https://discord.gg/SBTEbSx\n"
+            + "Github: https://github.com/CobbleSword/BurritoSpigot\n";
     /*========================================================================*/
     static YamlConfiguration config;
-    static int version;
+    public static int version;
     /*========================================================================*/
 
     public static void init(File configFile) {
         CONFIG_FILE = configFile;
         config = new YamlConfiguration();
         try {
-            System.out.println("Loading TacoSpigot config from " + configFile.getName());
+            System.out.println("Loading BurritoSpigot config from " + configFile.getName());
             config.load(CONFIG_FILE);
         } catch (IOException ex) {
+            Bukkit.getLogger().log(Level.SEVERE, "Could not load burrito.yml, another program might using it", ex);
         } catch (InvalidConfigurationException ex) {
-            Bukkit.getLogger().log(Level.SEVERE, "Could not load taco.yml, please correct your syntax errors", ex);
+            Bukkit.getLogger().log(Level.SEVERE, "Could not load burrito.yml, please correct your syntax errors", ex);
             throw Throwables.propagate(ex);
         }
         config.options().header(HEADER);
@@ -44,7 +48,7 @@ public class TacoSpigotConfig {
 
         version = getInt("config-version", 1);
         set("config-version", 1);
-        readConfig(TacoSpigotConfig.class, null);
+        readConfig(BurritoSpigotConfig.class, null);
     }
 
     static void readConfig(Class<?> clazz, Object instance) {
@@ -89,6 +93,7 @@ public class TacoSpigotConfig {
         return config.getFloat(path, config.getFloat(path));
     }
 
+    @SuppressWarnings("all")
     private static int getInt(String path, int def) {
         config.addDefault(path, def);
         return config.getInt(path, config.getInt(path));
@@ -104,9 +109,26 @@ public class TacoSpigotConfig {
         config.addDefault(path, def);
         return config.getString(path, config.getString(path));
     }
+    /*========================================================================*/
 
-    public static boolean useArraysForBlockStates;
-    private static void useArraysForBlockStates() {
-        useArraysForBlockStates = getBoolean("useArraysForBlockStates", false);
+    public static boolean warnTooManyChannelsRegistered;
+
+    public static void warnTooManyChannelsRegistered(){
+        warnTooManyChannelsRegistered = getBoolean("warnTooManyChannelsRegistered", true);
     }
+
+    public static int chunkThreads;
+    public static int playersPerThread;
+
+    public static void chunk() {
+        chunkThreads = getInt("chunkThreads", 2);
+        playersPerThread = getInt("playersPerThread", 50);
+    }
+
+    public static int customChatLength;
+
+    public static void customChatLength(){
+        customChatLength = getInt("customChatLength", 100);
+    }
+
 }

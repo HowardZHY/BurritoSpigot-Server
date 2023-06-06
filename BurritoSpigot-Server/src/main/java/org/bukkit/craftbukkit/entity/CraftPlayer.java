@@ -3,6 +3,7 @@ package org.bukkit.craftbukkit.entity;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableSet;
 import com.mojang.authlib.GameProfile;
+import dev.cobblesword.burrito.BurritoSpigotConfig;
 import io.netty.buffer.Unpooled;
 
 import java.io.ByteArrayOutputStream;
@@ -1155,7 +1156,11 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
     }
 
     public void addChannel(String channel) {
-       com.google.common.base.Preconditions.checkState( channels.size() < 128, "Too many channels registered" ); // Spigot
+        // BurritoSpigot Start - TODO: Custom Too Many Channels Warn
+        if (BurritoSpigotConfig.warnTooManyChannelsRegistered){
+            com.google.common.base.Preconditions.checkState( channels.size() < 128, "Too many channels registered" ); // Spigot
+        }
+        // BurritoSpigot End
         if (channels.add(channel)) {
             server.getPluginManager().callEvent(new PlayerRegisterChannelEvent(this, channel));
         }

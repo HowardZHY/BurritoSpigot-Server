@@ -31,7 +31,7 @@
      private final Random s = new Random();
      private String serverIp;
 -    private int u = -1;
-+    public int u = -1; public int port = this.u; // Burrito
++    public int u = -1; public int port = this.u; // BurritoSpigot - PAIL
      public WorldServer[] worldServer;
      private PlayerList v;
      private boolean isRunning = true;

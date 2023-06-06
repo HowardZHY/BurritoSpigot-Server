@@ -7,9 +7,9 @@
 -        if (s.length() > 100) {
 -            s = s.substring(0, 100);
 +        // BurritoSpigot Start
-+        // BurritoSpigot - TODO: Custom Chat Length Config
-+        if (s.length() > 512) {
-+            s = s.substring(0, 512);
++        // BurritoSpigot - Custom Chat Length Config
++        if (s.length() > dev.cobblesword.burrito.BurritoSpigotConfig.customChatLength) {
++            s = s.substring(0, dev.cobblesword.burrito.BurritoSpigotConfig.customChatLength);
          }
 -
 +        // BurritoSpigot End
@@ -18,7 +18,7 @@
  
      public void a(PacketDataSerializer packetdataserializer) throws IOException {
 -        this.a = packetdataserializer.c(100);
-+        this.a = packetdataserializer.c(512); // BurritoSpigot
++        this.a = packetdataserializer.c(dev.cobblesword.burrito.BurritoSpigotConfig.customChatLength); // BurritoSpigot
      }
  
      public void b(PacketDataSerializer packetdataserializer) throws IOException {
