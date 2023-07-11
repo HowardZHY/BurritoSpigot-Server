@@ -23,9 +23,17 @@ public class BurritoSpigotConfig {
             + "\n"
             + "If you need help with the configuration or have any questions related to BurritoSpigot,\n"
             + "join us in our Discord.\n"
-            + "\n"
             + "Discord: https://discord.gg/SBTEbSx\n"
-            + "Github: https://github.com/CobbleSword/BurritoSpigot\n";
+            + "Github: https://github.com/CobbleSword/BurritoSpigot\n"
+            + "\n"
+            + "Options:\n"
+            + "warnTooManyChannelsRegistered:\n"
+            + "Suggest false if Burrito was lobby server\n"
+            + "thread options:\n"
+            + "Adjust it base on CPU amounts\n"
+            + "customChatLength:\n"
+            + "1.8's default was 100, that's not enough if you use lots cmds. Suggest 256 or longer.\n"
+            ;
     /*========================================================================*/
     static YamlConfiguration config;
     public static int version;
