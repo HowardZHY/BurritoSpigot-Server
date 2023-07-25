@@ -229,7 +229,7 @@ public class Main {
                 net.techcable.tacospigot.TacoSpigotConfig.init((File) options.valueOf("taco-settings")); // TacoSpigot - load config before we load libraries to allow access while loading
                 System.out.println("Loading libraries, please wait...");
                 BurritoSpigotConfig.init((File) options.valueOf("burrito-settings")); // BurritoSpigot - load config before we load libraries to allow access while loading
-                System.out.println("Loading BurritoSpigot ...");
+                System.out.println("Loading BurritoSpigot Server ...");
                 MinecraftServer.main(options);
             } catch (Throwable t) {
                 t.printStackTrace();

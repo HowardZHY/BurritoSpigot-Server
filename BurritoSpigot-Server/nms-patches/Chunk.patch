@@ -252,10 +252,10 @@
 +            }
 +        }
 +        for ( EnumCreatureType creatureType : EnumCreatureType.values() )
++        {
++            if ( creatureType.a().isAssignableFrom( entity.getClass() ) )
 +            {
-+                if ( creatureType.a().isAssignableFrom( entity.getClass() ) )
-+                {
-+                    this.entityCount.adjustOrPutValue( creatureType.a(), 1, 1 );
++                this.entityCount.adjustOrPutValue( creatureType.a(), 1, 1 );
 +            }
 +        }
 +        // Spigot end

@@ -6,7 +6,7 @@ import java.io.File;
 
 public class KnockbackSpigot
 {
-    private static KnockbackSpigot INSTANCE;//Meh, memory leak but oh well, closing will fix this
+    public static KnockbackSpigot INSTANCE; // Meh, memory leak but oh well, closing will fix this
     private static final File CONFIG_FILE = new File("KnockbackSpigot.json");
     private KnockbackConfig config;
 
