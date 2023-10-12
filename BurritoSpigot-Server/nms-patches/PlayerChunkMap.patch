@@ -190,6 +190,15 @@
              }
          }
      }
+@@ -220,7 +275,7 @@
+     }
+ 
+     public void a(int i) {
+-        i = MathHelper.clamp(i, 3, 32);
++        i = MathHelper.clamp(i, 2, 64); // BurritoSpigot - Increase View Distance
+         if (i != this.g) {
+             int j = i - this.g;
+             ArrayList arraylist = Lists.newArrayList(this.managedPlayers);
 @@ -258,6 +313,38 @@
          }
      }
