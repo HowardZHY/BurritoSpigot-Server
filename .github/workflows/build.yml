@@ -28,7 +28,7 @@ jobs:
         restore-keys: ${{ runner.os }}-paper-2
     - name: Patch and Build
       run: cd BurritoSpigot-Server && ./burrito build
-    - uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v3
       with:
         name: BurritoSpigot JDK ${{ matrix.java }}
         path: ./BurritoSpigot-Server/target/BurritoSpigot.jar
@@ -39,7 +39,7 @@ jobs:
         API_TOKEN_GITHUB: ${{ secrets.GITHUB_TOKEN }}
       with:
         source_file: 'BurritoSpigot-Server/target/BurritoSpigot.jar'
-        destination_repo: 'CobbleSword/BurritoSpigot'
+        destination_repo: 'HowardZHY/BurritoSpigot'
         destination_folder: 'jars'
         destination_branch: 'downloads'
         user_email: 'action@github.com'
