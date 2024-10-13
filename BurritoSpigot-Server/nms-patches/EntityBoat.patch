@@ -1,10 +1,11 @@
 --- a/net/minecraft/server/EntityBoat.java
 +++ b/net/minecraft/server/EntityBoat.java
-@@ -2,6 +2,16 @@
+@@ -2,6 +2,17 @@
  
  import java.util.List;
  
 +// CraftBukkit start
++import dev.cobblesword.burrito.BurritoSpigotConfig;
 +import org.bukkit.Location;
 +import org.bukkit.craftbukkit.event.CraftEventFactory;
 +import org.bukkit.entity.Vehicle;
@@ -17,7 +18,7 @@
  public class EntityBoat extends Entity {
  
      private boolean a;
-@@ -13,6 +23,27 @@
+@@ -13,12 +24,33 @@
      private double g;
      private double h;
  
@@ -45,7 +46,14 @@
      public EntityBoat(World world) {
          super(world);
          this.a = true;
-@@ -52,6 +83,8 @@
+         this.b = 0.07D;
+         this.k = true;
+-        this.setSize(1.5F, 0.6F);
++        this.setSize(BurritoSpigotConfig.boatSize, BurritoSpigotConfig.boatHeight); // BurritoSpigot
+     }
+ 
+     protected boolean s_() {
+@@ -52,6 +84,8 @@
          this.lastX = d0;
          this.lastY = d1;
          this.lastZ = d2;
@@ -54,7 +62,7 @@
      }
  
      public double an() {
-@@ -65,6 +98,19 @@
+@@ -65,6 +99,19 @@
              if (this.passenger != null && this.passenger == damagesource.getEntity() && damagesource instanceof EntityDamageSourceIndirect) {
                  return false;
              } else {
@@ -74,7 +82,7 @@
                  this.b(-this.m());
                  this.a(10);
                  this.setDamage(this.j() + f * 10.0F);
-@@ -72,6 +118,15 @@
+@@ -72,6 +119,15 @@
                  boolean flag = damagesource.getEntity() instanceof EntityHuman && ((EntityHuman) damagesource.getEntity()).abilities.canInstantlyBuild;
  
                  if (flag || this.j() > 40.0F) {
@@ -90,7 +98,7 @@
                      if (this.passenger != null) {
                          this.passenger.mount(this);
                      }
-@@ -95,6 +150,13 @@
+@@ -95,6 +151,13 @@
      }
  
      public void t_() {
@@ -104,7 +112,7 @@
          super.t_();
          if (this.l() > 0) {
              this.a(this.l() - 1);
-@@ -138,11 +200,11 @@
+@@ -138,11 +201,11 @@
                  if (this.random.nextBoolean()) {
                      d8 = this.locX - d4 * d6 * 0.8D + d5 * d7;
                      d9 = this.locZ - d5 * d6 * 0.8D - d4 * d7;
@@ -118,7 +126,7 @@
                  }
              }
          }
-@@ -196,6 +258,19 @@
+@@ -196,6 +259,19 @@
                  this.motX += -Math.sin((double) (f * 3.1415927F / 180.0F)) * this.b * (double) entityliving.ba * 0.05000000074505806D;
                  this.motZ += Math.cos((double) (f * 3.1415927F / 180.0F)) * this.b * (double) entityliving.ba * 0.05000000074505806D;
              }
@@ -138,7 +146,7 @@
  
              d4 = Math.sqrt(this.motX * this.motX + this.motZ * this.motZ);
              if (d4 > 0.35D) {
-@@ -230,16 +305,26 @@
+@@ -230,16 +306,26 @@
                      Block block = this.world.getType(blockposition).getBlock();
  
                      if (block == Blocks.SNOW_LAYER) {
@@ -166,7 +174,7 @@
                  this.motX *= 0.5D;
                  this.motY *= 0.5D;
                  this.motZ *= 0.5D;
-@@ -248,16 +333,16 @@
+@@ -248,16 +334,16 @@
              this.move(this.motX, this.motY, this.motZ);
              if (this.positionChanged && d3 > 0.2975D) {
                  if (!this.world.isClientSide && !this.dead) {
@@ -190,7 +198,7 @@
                  }
              } else {
                  this.motX *= 0.9900000095367432D;
-@@ -285,6 +370,22 @@
+@@ -285,6 +371,22 @@
  
              this.yaw = (float) ((double) this.yaw + d12);
              this.setYawPitch(this.yaw, this.pitch);
@@ -213,7 +221,7 @@
              if (!this.world.isClientSide) {
                  List list = this.world.getEntities(this, this.getBoundingBox().grow(0.20000000298023224D, 0.0D, 0.20000000298023224D));
  
-@@ -299,6 +400,7 @@
+@@ -299,6 +401,7 @@
                  }
  
                  if (this.passenger != null && this.passenger.dead) {
@@ -221,7 +229,7 @@
                      this.passenger = null;
                  }
  
-@@ -336,18 +438,16 @@
+@@ -336,18 +439,16 @@
              if (this.fallDistance > 3.0F) {
                  this.e(this.fallDistance, 1.0F);
                  if (!this.world.isClientSide && !this.dead) {
@@ -247,7 +255,7 @@
                  }
  
                  this.fallDistance = 0.0F;
-@@ -359,7 +459,7 @@
+@@ -359,7 +460,7 @@
      }
  
      public void setDamage(float f) {
@@ -256,7 +264,7 @@
      }
  
      public float j() {
-@@ -367,7 +467,7 @@
+@@ -367,7 +468,7 @@
      }
  
      public void a(int i) {
@@ -265,7 +273,7 @@
      }
  
      public int l() {
-@@ -375,10 +475,27 @@
+@@ -375,10 +476,27 @@
      }
  
      public void b(int i) {

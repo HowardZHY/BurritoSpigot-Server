@@ -33,6 +33,8 @@ public class BurritoSpigotConfig {
             + "Adjust it base on CPU amounts\n"
             + "customChatLength:\n"
             + "1.8's default was 100, that's not enough if you use lots cmds. Suggest 256 or longer.\n"
+            + "boatHitBox:\n"
+            + "1.8 boat's box is larger than 1.9+, can manually set smaller."
             ;
     /*========================================================================*/
     static YamlConfiguration config;
@@ -73,7 +75,6 @@ public class BurritoSpigotConfig {
                 }
             }
         }
-
         try {
             config.save(CONFIG_FILE);
         } catch (IOException ex) {
@@ -138,4 +139,11 @@ public class BurritoSpigotConfig {
         customChatLength = getInt("customChatLength", 100);
     }
 
+    public static float boatSize;
+    public static float boatHeight;
+
+    private static void boatHitBox() {
+        boatSize = getFloat("boatSize", 1.5F);
+        boatHeight = getFloat("boatHeight", 0.6F);
+    }
 }
