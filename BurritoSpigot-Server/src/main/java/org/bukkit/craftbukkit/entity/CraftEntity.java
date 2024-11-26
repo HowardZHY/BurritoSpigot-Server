@@ -221,6 +221,18 @@ public abstract class CraftEntity implements org.bukkit.entity.Entity {
         entity.velocityChanged = true;
     }
 
+    // BurritoSpigot Start
+    @Override
+    public double getHeight() {
+        return getHandle().length;
+    }
+
+    @Override
+    public double getWidth() {
+        return getHandle().width;
+    }
+    // BurritoSpigot End
+
     public boolean isOnGround() {
         if (entity instanceof EntityArrow) {
             return ((EntityArrow) entity).isInGround();
