@@ -330,6 +330,17 @@ public class Vector implements Cloneable, ConfigurationSerializable {
         return this;
     }
 
+    // Burrito Start - Citizens Compat
+    /**
+     * Check whether each component of this vector is equal to 0.
+     *
+     * @return true if equal to zero, false if at least one component is non-zero
+     */
+    public boolean isZero() {
+        return x == 0 && y == 0 && z == 0;
+    }
+    // Burrito End
+
     /**
      * Returns whether this vector is in an axis-aligned bounding box.
      * <p>
