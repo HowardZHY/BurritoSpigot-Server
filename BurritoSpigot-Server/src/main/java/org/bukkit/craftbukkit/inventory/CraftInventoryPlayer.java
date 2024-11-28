@@ -25,7 +25,27 @@ public class CraftInventoryPlayer extends CraftInventory implements org.bukkit.i
     public int getSize() {
         return super.getSize() - 4;
     }
+    // BurritoSpigot Start - Backport
+    @Override
+    public ItemStack getItemInMainHand() {
+        return this.getItemInHand();
+    }
 
+    @Override
+    public void setItemInMainHand(ItemStack item) {
+        this.setItemInHand(item);
+    }
+
+    @Override
+    public ItemStack getItemInOffHand() {
+        return null; // ignore
+    }
+
+    @Override
+    public void setItemInOffHand(ItemStack item) {
+        // ignore
+    }
+    // BurritoSpigot End
     public ItemStack getItemInHand() {
         return CraftItemStack.asCraftMirror(getInventory().getItemInHand());
     }

@@ -104,7 +104,37 @@ public interface PlayerInventory extends Inventory {
      * @param boots The ItemStack to use as boots
      */
     public void setBoots(ItemStack boots);
+    // BurritoSpigot Start - Backport
+    /**
+     * Gets a copy of the item the player is currently holding
+     * in their main hand.
+     *
+     * @return the currently held item
+     */
+    ItemStack getItemInMainHand();
 
+    /**
+     * Sets the item the player is holding in their main hand.
+     *
+     * @param item The item to put into the player's hand
+     */
+    void setItemInMainHand(ItemStack item);
+
+    /**
+     * Gets a copy of the item the player is currently holding
+     * in their off hand.
+     *
+     * @return the currently held item
+     */
+    ItemStack getItemInOffHand();
+
+    /**
+     * Sets the item the player is holding in their off hand.
+     *
+     * @param item The item to put into the player's hand
+     */
+    void setItemInOffHand(ItemStack item);
+    // BurritoSpigot End
     /**
      * Returns the ItemStack currently hold
      *
