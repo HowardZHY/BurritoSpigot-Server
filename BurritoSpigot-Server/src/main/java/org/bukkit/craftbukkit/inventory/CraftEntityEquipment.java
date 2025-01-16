@@ -20,7 +20,27 @@ public class CraftEntityEquipment implements EntityEquipment {
     public CraftEntityEquipment(CraftLivingEntity entity) {
         this.entity = entity;
     }
+    // BurritoSpigot Start - Backport
+    @Override
+    public ItemStack getItemInMainHand() {
+        return getItemInHand();
+    }
 
+    @Override
+    public void setItemInMainHand(ItemStack item) {
+        setItemInHand(item);
+    }
+
+    @Override
+    public ItemStack getItemInOffHand() {
+        return null; // ignore
+    }
+
+    @Override
+    public void setItemInOffHand(ItemStack item) {
+        // ignore
+    }
+    // BurritoSpigot End
     public ItemStack getItemInHand() {
         return getEquipment(WEAPON_SLOT);
     }

@@ -6,7 +6,37 @@ import org.bukkit.entity.Entity;
  * An interface to a creatures inventory
  */
 public interface EntityEquipment {
+    // BurritoSpigot Start - Backport
+    /**
+     * Gets a copy of the item the entity is currently holding
+     * in their main hand.
+     *
+     * @return the currently held item
+     */
+    ItemStack getItemInMainHand();
 
+    /**
+     * Sets the item the entity is holding in their main hand.
+     *
+     * @param item The item to put into the entities hand
+     */
+    void setItemInMainHand(ItemStack item);
+
+    /**
+     * Gets a copy of the item the entity is currently holding
+     * in their offhand.
+     *
+     * @return the currently held item
+     */
+    ItemStack getItemInOffHand();
+
+    /**
+     * Sets the item the entity is holding in their offhand.
+     *
+     * @param item The item to put into the entities hand
+     */
+    void setItemInOffHand(ItemStack item);
+    // BurritoSpigot End
     /**
      * Gets a copy of the item the entity is currently holding
      *
