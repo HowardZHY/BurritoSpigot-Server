@@ -1,10 +1,12 @@
 package org.bukkit.entity;
+// BurritoSpigot Start - Backport
+import org.bukkit.inventory.*;
 
 /**
  * Represents a villager NPC
  */
-public interface Villager extends Ageable, NPC {
-
+public interface Villager extends Ageable, NPC, InventoryHolder {
+// BurritoSpigot END
     /**
      * Gets the current profession of this villager.
      *
@@ -18,8 +20,25 @@ public interface Villager extends Ageable, NPC {
      * @param profession New profession.
      */
     public void setProfession(Profession profession);
+    // BurritoSpigot Start - Backport Some API
+    /**
+     * Get the number of trades this villager currently has available.
+     *
+     * @return the recipe count
+     */
+    int getRecipeCount();
 
-
+    /**
+     * Gets this villager's inventory.
+     * <br>
+     * Note that this inventory is not the Merchant inventory, rather, it is the
+     * items that a villager might have collected (from harvesting crops, etc.)
+     *
+     * @inheritDoc
+     */
+    @Override
+    Inventory getInventory();
+    // BurritoSpigot END - Backport
     /**
      * Represents the various different Villager professions there may be.
      */

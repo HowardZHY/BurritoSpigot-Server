@@ -41,4 +41,10 @@ public class CraftVillager extends CraftAgeable implements Villager, InventoryHo
     public Inventory getInventory() {
         return new CraftInventory(getHandle().inventory);
     }
+    // BurritoSpigot Start - Backport
+    @Override
+    public int getRecipeCount() {
+        return getHandle().getOffers(null).size();
+    }
+    // BurritoSpigot End
 }
